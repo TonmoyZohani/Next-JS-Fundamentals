@@ -1,17 +1,24 @@
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
 const NavBar = () => {
   return (
     <div>
-       <nav className='flex justify-center'>
-          <ul className='flex justify-between w-1/2'>
+      <nav className="flex justify-center">
+        <ul className="flex justify-between w-1/2">
+          <Link href="/">
             <li>Home</li>
-            <li>Services</li>
+          </Link>
+          <Link href="/services">
+            <li>Servicse</li>
+          </Link>
+          <Link href="/about">
             <li>About</li>
-          </ul>
-        </nav>
+          </Link>
+        </ul>
+      </nav>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
