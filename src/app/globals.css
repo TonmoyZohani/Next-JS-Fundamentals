@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #ffffff; /* Always white */
   --foreground: #171717;
 }
 
@@ -12,10 +12,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Optionally remove this entire block */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* No override = stays white */
   }
 }
 
