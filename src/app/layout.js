@@ -22,7 +22,18 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>Services</li>
+            <li>About</li>
+          </ul>
+        </nav>
+        <main className="h-screen h-max-[600px]">{children}</main>
+
+        <footer className="text-center bg-slate-600">
+          Awesome Next JS Project
+        </footer>
       </body>
     </html>
   );
