@@ -1,23 +1,26 @@
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
-  const dummyUserData = {
-    role: "user", // 👈 change to "admin" to allow access
-    email: "test@admin.com",
-  };
+  // Read a cookie named "role"
+  const role = request.cookies.get("role")?.value || "guest"; // fallback to guest
 
   const pathname = request.nextUrl.pathname;
 
   const isServicesPage = pathname.startsWith("/services");
-  const isAdmin = dummyUserData.role === "admin";
+  const isAdmin = role === "admin";
 
   console.log("Requested Path:", pathname);
-  console.log("Is Services Page:", isServicesPage);
+  console.log("User Role:", role);
 
   if (isServicesPage && !isAdmin) {
-    // Redirect non-admins to home
+    // Redirect non-admins to login
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return NextResponse.next();
 }
+
+// ✅ Match both `/services` and `/services/*`
+export const config = {
+  matcher: ["/services", "/services/:path*"],
+};
