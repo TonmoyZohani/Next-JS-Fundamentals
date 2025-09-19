@@ -2,6 +2,8 @@ import React from "react";
 import { fakeServiceData } from "../../../../public/serviceData";
 
 const ServiceDetailsPage = ({ params }) => {
+  console.log("Params", params.id);
+
   const id = Number(params.id);
   const serviceData = fakeServiceData;
 
@@ -18,7 +20,9 @@ const ServiceDetailsPage = ({ params }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="max-w-xl w-full bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">Service Details</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">
+          Service Details
+        </h1>
 
         <div className="mb-4">
           <p className="text-lg font-semibold text-gray-700">ID:</p>

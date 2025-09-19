@@ -7,50 +7,63 @@ const NavBar = () => {
   const pathname = usePathname();
   const isDashboard = pathname.includes("dashboard");
 
-  const links = [
-    { href: "/", label: "Home" },
+  const navItems = [
     { href: "/services", label: "Services" },
+    { href: "/projects", label: "Projects" },
     { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
   ];
+
+  if (isDashboard) return null;
 
   return (
     <>
-      {!isDashboard && (
-        <header className="bg-gradient-to-r from-blue-600 to-blue-500 shadow-md">
-          <nav className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              {/* Logo / Brand */}
-              <Link href="/" className="text-white font-bold text-xl tracking-wide">
-                MyBrand
+      {/* Navigation Header */}
+      <header className="fixed top-0 w-full z-50 bg-[#24252A] border-b border-gray-700">
+        <nav className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between h-20">
+            {/* Left-aligned Logo */}
+            <div className="flex-shrink-0">
+              <Link href="/" className="text-2xl font-bold text-white tracking-tight">
+                LOGOBAKERY
               </Link>
-
-              {/* Nav Links */}
-              <ul className="flex space-x-6">
-                {links.map(({ href, label }) => {
-                  const isActive = pathname === href;
-                  return (
-                    <li key={href}>
-                      <Link
-                        href={href}
-                        className={`relative px-2 py-1 text-lg font-medium transition-colors ${
-                          isActive
-                            ? "text-yellow-300"
-                            : "text-white hover:text-yellow-300"
-                        }`}
-                      >
-                        {label}
-                        {isActive && (
-                          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 rounded"></span>
-                        )}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
             </div>
-          </nav>
-        </header>
-      )}
+
+            {/* Center-aligned Navigation Links */}
+            <div className="flex items-center justify-center space-x-12 absolute left-1/2 transform -translate-x-1/2">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`text-[15px] font-medium transition-colors duration-200 ${
+                      isActive 
+                        ? "text-white font-semibold" 
+                        : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Right-aligned Contact Button */}
+            <div className="flex items-center">
+              <Link
+                href="/contact"
+                className="bg-white text-[#24252A] px-6 py-3 rounded-md text-[15px] font-medium hover:bg-gray-100 transition-colors duration-200"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      {/* Spacer for fixed header */}
+      <div className="h-20" />
     </>
   );
 };
